@@ -1,0 +1,68 @@
+﻿@page
+@model FluentWebApplication.Pages.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+    .required::after {
+        content: " (required)";
+        font-weight: bold;
+        color: crimson;
+    }
+
+    .validate-text {
+        color: crimson;
+        font-weight: bold
+    }
+</style>
+
+<div class="alert alert-primary" role="alert">
+    Create
+</div>
+
+
+<div class="row">
+    <div class="col-md-6">
+
+        <form method="post">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Person.FirstName" class="required"></label>
+                <input asp-for="Person.FirstName" class="form-control"/>
+                <span asp-validation-for="Person.FirstName" class="validate-text"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Person.LastName" class="required"></label>
+                <input asp-for="Person.LastName" class="form-control"/>
+                <span asp-validation-for="Person.LastName" class="validate-text"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Person.EmailAddress" class="required"></label>
+                <input asp-for="Person.EmailAddress" class="form-control"/>
+                <span asp-validation-for="Person.EmailAddress" class="validate-text"></span>
+            </div>
+
+           <div class="row">
+                <div class="col-auto">
+                    <input type="submit" value="Create" class="btn btn-primary mt-2" />
+                </div>
+                <div class="col-auto">
+                    <a asp-page="./List" class="btn btn-primary mt-2">Back to List</a>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
