@@ -50,4 +50,9 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\AspCoreHelperLibrary\AspCoreHelperLibrary.csproj" />
 	</ItemGroup>
+
+
+	<ItemGroup>
+	  <Folder Include="DataScript\" />
+	</ItemGroup>
 </Project>
