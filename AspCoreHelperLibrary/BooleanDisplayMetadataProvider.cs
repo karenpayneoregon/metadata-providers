@@ -13,8 +13,7 @@ public sealed class BooleanDisplayMetadataProvider : IDisplayMetadataProvider
 {
     public void CreateDisplayMetadata(DisplayMetadataProviderContext context)
     {
-        if (context == null)
-            throw new ArgumentNullException(nameof(context));
+        ArgumentNullException.ThrowIfNull(context);
 
         if (context.Key.ModelType != typeof(bool) && context.Key.ModelType != typeof(bool?))
             return;

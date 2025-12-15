@@ -13,11 +13,10 @@ public sealed class DateOnlyDisplayMetadataProvider : IDisplayMetadataProvider
 {
     public void CreateDisplayMetadata(DisplayMetadataProviderContext context)
     {
-        if (context == null)
-            throw new ArgumentNullException(nameof(context));
+        
+        ArgumentNullException.ThrowIfNull(context);
 
-        if (context.Key.ModelType != typeof(DateOnly) &&
-            context.Key.ModelType != typeof(DateOnly?))
+        if (context.Key.ModelType != typeof(DateOnly) && context.Key.ModelType != typeof(DateOnly?))
             return;
 
         // Display format
