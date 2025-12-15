@@ -9,7 +9,7 @@ namespace AspCoreHelperLibrary;
 /// This class implements the <see cref="IDisplayMetadataProvider"/> interface to supply a default display format string
 /// for <see cref="DateTime"/> and nullable <see cref="DateTime"/> types. The format string is set to "{0:yyyy-MM-dd}".
 /// </remarks>
-public sealed class DateFormatMetadataProvider : IDisplayMetadataProvider
+public sealed class DateTimeDisplayMetadataProvider : IDisplayMetadataProvider
 {
     public void CreateDisplayMetadata(DisplayMetadataProviderContext context)
     {
