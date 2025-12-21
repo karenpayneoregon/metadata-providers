@@ -6,6 +6,7 @@ using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
 using System.Diagnostics;
 using AspCoreHelperLibrary;
+using FluentWebApplication.Models;
 using FluentWebApplication.Validators;
 
 namespace FluentWebApplication;
@@ -19,13 +20,15 @@ public class Program
         // Add services to the container.
         builder.Services.AddRazorPages();
 
-        builder.Services
-            .AddRazorPages()
-            .AddMvcOptions(options =>
-            {
-                // split PascalCase property names into separate words for display
-                options.ModelMetadataDetailsProviders.Add(new PascalCaseDisplayMetadataProvider());
-            });
+        
+        // Configures a custom display metadata provider to format PascalCase property names into a more readable format.
+        builder.Services.AddControllersWithViews(options =>
+        {
+            options.ModelMetadataDetailsProviders.Add(
+                new PascalCaseDisplayMetadataProvider([typeof(Person)], 
+                    includeDerivedTypes: false));
+        });
+
 
 
         builder.Services.AddValidatorsFromAssemblyContaining<PersonValidator>();
