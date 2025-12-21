@@ -19,6 +19,9 @@ public static class ClassScanner
     /// <exception cref="DirectoryNotFoundException">
     /// Thrown when the specified folder does not exist.
     /// </exception>
+    /// <remarks>
+    /// For development purposes only. 
+    /// </remarks>
     public static string[] GetClassNamesInFolder(string relativeFolderPath)
     {
         var projectRoot = AppContext.BaseDirectory;
