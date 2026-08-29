@@ -2,7 +2,7 @@
 
 namespace AspCoreHelperLibrary;
 
-public static class ClassScanner
+public static partial class ClassScanner
 {
     /// <summary>
     /// Retrieves the names of all classes defined in C# files within the specified folder and its subdirectories.
@@ -20,7 +20,10 @@ public static class ClassScanner
     /// Thrown when the specified folder does not exist.
     /// </exception>
     /// <remarks>
-    /// For development purposes only. 
+    /// For development purposes only.
+    ///
+    /// var classNames = ClassScanner.GetClassNamesInFolder("Models");
+    /// 
     /// </remarks>
     public static string[] GetClassNamesInFolder(string relativeFolderPath)
     {
@@ -38,7 +41,7 @@ public static class ClassScanner
         if (!Directory.Exists(targetFolder))
             throw new DirectoryNotFoundException(targetFolder);
 
-        var classRegex = new Regex(@"\bclass\s+(\w+)", RegexOptions.Compiled);
+        var classRegex = CreateClassRegex();
 
         return Directory.GetFiles(targetFolder, "*.cs", SearchOption.AllDirectories)
             .SelectMany(file =>
@@ -47,4 +50,7 @@ public static class ClassScanner
             .Distinct()
             .ToArray();
     }
+
+    [GeneratedRegex(@"\bclass\s+(\w+)")]
+    private static partial Regex CreateClassRegex();
 }
